@@ -2,23 +2,23 @@ pipeline {
   agent any
 
   stages {
-    stage ('Build') {
-      steps {
-        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
-        echo 'Building ... '
-        sh 'pip install -r Requirements.txt'
-      }
-    }
-    stage ('Test') {
-      steps {
-        echo 'Testing ... '
-        sh 'python3 test.py'
-      }
-    }
+    // stage ('Build') {
+    //   steps {
+    //
+    //     echo 'Building ... '
+    //     sh 'pip install -r Requirements.txt'
+    //   }
+    // }
+    // stage ('Test') {
+    //   steps {
+    //     echo 'Testing ... '
+    //     sh 'python3 test.py'
+    //   }
+    // }
     stage ('Deploy') {
       steps {
         echo 'Deploying ...'
-        echo 'sh docker-compose up --build -d'
+        sh 'docker-compose up --build -d'
         echo 'Go To http://Localhost:5000 for Spys Journal'
       }
     }
