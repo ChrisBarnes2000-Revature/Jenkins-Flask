@@ -22,10 +22,7 @@ pipeline {
         echo 'Go To http://Localhost:5000 for Spys Journal'
       }
     }
-  }
-
-  post {
-    always {
+    stage ('Discord') {
       discordSend webhookURL: 'https://discord.com/api/webhooks/994018555341307966/V-Or2AnFnDNpfHa7slRrl2S0rhdybzYSnDNzKHVHgnKxJHCWG8iXWVQAPNjsa8hvHJ_q',
                   enableArtifactsList: false, scmWebUrl: '',
                   title: 'Project1'+JOB_NAME, link: env.BUILD_URL,
@@ -34,6 +31,9 @@ pipeline {
                   footer: 'Jenkins Pipeline Build',
                   result: currentBuild.currentResult
     }
+  }
+
+  post {
     success {
       mail to: 'Chris.Barnes.2000@me.com',
       subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) Was A Success",
